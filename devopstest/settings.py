@@ -25,7 +25,7 @@ SECRET_KEY = 'er^-bte6%5lbv#eyd^pi=fcrq+(ri738m&-q#jq=uhuu29+(r_'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -77,9 +77,12 @@ WSGI_APPLICATION = 'devopstest.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'devopstest',
-        'USER': 'devopstest',
-        'PASSWORD': 'devopstest',
+        'NAME': os.environ.get('DATABASE_NAME'),
+        'USER': os.environ.get('DATABASE_USER'),
+        'PASSWORD': os.environ.get('DATABASE_PWD'),
+        'HOST': os.environ.get('DATABASE_HOST'),
+        'PORT': os.environ.get('DATABASE_PORT'),
+        'default-character-set': 'utf8'
     }
 }
 

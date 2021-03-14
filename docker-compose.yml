@@ -1,0 +1,35 @@
+version: '3.3'
+
+networks:
+  django-nw:
+
+services:
+  web:
+    image: coolboynova/devopstest:latest
+    container_name: web
+    ports:
+      - "8000:8000"
+    networks:
+      - django-nw
+    environment:
+      DATABASE_HOST: db
+      DATABASE_NAME: devopstest
+      DATABASE_PORT: 3306
+      DATABASE_USER: devopstest
+      DATABASE_PWD: devopstest
+  db:
+    image: mysql:5.7
+    container_name: db
+    restart: always
+    ports:
+      - 3306:3306
+    networks:
+      - django-nw
+    environment:
+      MYSQL_HOST: localhost
+      MYSQL_PORT: 3306
+      MYSQL_ROOT_HOST: '%'
+      MYSQL_ROOT_PASSWORD: devopstest
+      MYSQL_DATABASE: devopstest
+      MYSQL_USER: devopstest
+      MYSQL_PASSWORD: 'devopstest'
