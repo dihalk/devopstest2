@@ -4,7 +4,7 @@ terraform {
     region  = "us-east-1"
     profile = "default"
     key     = "terraformstatefile"
-    bucket  = "terraformstatebucket-cd-demo"
+    bucket  = "ck-dev-test-candidate-dilshan"
   }
 
 }
