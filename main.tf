@@ -60,8 +60,6 @@ resource "aws_lb_target_group_attachment" "lb_target_grp_2" {
   port             = var.lb_tg_group_att_port
 }
 
-
-#Create SG for LB, only TCP/80 and access to app-sgs
 resource "aws_security_group" "lb_sg" {
   name        = "lb-sg"
   description = "Allow 80 traffic"

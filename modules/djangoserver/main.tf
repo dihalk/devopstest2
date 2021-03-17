@@ -67,15 +67,16 @@ resource "aws_security_group" "sg-main" {
     from_port   = 8000
     to_port     = 8000
     protocol    = "tcp"
-    #security_groups = [aws_security_group.lb-sg.id]
-    cidr_blocks = ["0.0.0.0/0"]
+    #security_groups = [aws_security_group.lb_sg.id]
+    cidr_blocks = [aws_vpc.vpc_main.cidr_block]
   }
   ingress {
     description = "Allow port 3306 from us-east-1b subnet"
     from_port   = 3306
     to_port     = 3306
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+    #security_groups = [aws_security_group.lb_sg.id]
+    cidr_blocks = [aws_vpc.vpc_main.cidr_block]
   }
   egress {
     from_port   = 0
@@ -115,7 +116,7 @@ resource "aws_instance" "ec2" {
                 sudo curl -L "https://github.com/docker/compose/releases/download/1.28.5/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
                 sudo chmod +x /usr/local/bin/docker-compose
                 sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
-                sudo git clone https://github.com/dihalk/devopstest2.git -b feature/tf-modules
+                sudo git clone "https://github.com/dihalk/devopstest2" -b feature/tf-modules
                 sudo docker-compose -f ${var.dcompose_files[count.index]} up -d
 	EOF
   tags = {
