@@ -7,5 +7,6 @@ README.md
 *.pyc
 __pycache__
 Dockerfile
-docker-compose.yml
+*.yml
 working/
+*.tf
