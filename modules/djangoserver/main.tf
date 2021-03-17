@@ -63,18 +63,18 @@ resource "aws_security_group" "sg-main" {
     cidr_blocks = ["0.0.0.0/0"]
   }
   ingress {
-    description     = "Allow anyone on port 8000"
-    from_port       = 8000
-    to_port         = 8000
-    protocol        = "tcp"
+    description = "Allow anyone on port 8000"
+    from_port   = 8000
+    to_port     = 8000
+    protocol    = "tcp"
     #security_groups = [aws_security_group.lb-sg.id]
     cidr_blocks = ["0.0.0.0/0"]
   }
   ingress {
-    description     = "Allow port 3306 from us-east-1b subnet"
-    from_port       = 3306
-    to_port         = 3306
-    protocol        = "tcp"
+    description = "Allow port 3306 from us-east-1b subnet"
+    from_port   = 3306
+    to_port     = 3306
+    protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
   egress {
