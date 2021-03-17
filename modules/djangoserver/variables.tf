@@ -63,3 +63,9 @@ variable "ssh_pvtkey_file" {
   default     = "~/.ssh/id_rsa"
   description = "/Path to an SSH private key"
 }
+
+variable "dcompose_files" {
+  type        = list(string)
+  description = "subnets for VPC"
+  default     = ["/home/ubuntu/devopstest2/dcompose-app1-db.yml", "/home/ubuntu/devopstest2/dcompose-app2.yml"]
+}

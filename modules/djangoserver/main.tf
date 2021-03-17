@@ -102,7 +102,6 @@ resource "aws_instance" "ec2" {
   associate_public_ip_address = true
   vpc_security_group_ids      = [aws_security_group.sg-main[count.index].id]
   subnet_id                   = aws_subnet.subnet-main[count.index].id
-  for_each = ( ["/home/ubuntu/devopstest2/dcompose-app1-db.yml", "/home/ubuntu/devopstest2/dcompose-app2.yml" ] )
   user_data                   = <<-EOF
 		#! /bin/bash
                 sudo apt-get update
@@ -117,7 +116,7 @@ resource "aws_instance" "ec2" {
                 sudo chmod +x /usr/local/bin/docker-compose
                 sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
                 sudo git clone https://github.com/dihalk/devopstest2.git -b feature/tf-modules
-                sudo docker-compose -f ${each.key} up -d
+                sudo docker-compose -f ${var.dcompose_files[count.index]} up -d
 	EOF
   tags = {
     Name = "${var.server_name}-ec2-${count.index + 1}"
